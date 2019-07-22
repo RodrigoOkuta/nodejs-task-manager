@@ -3,11 +3,25 @@ const User = require("../src/models/user");
 
 // 5d346afa9a86212d8cd47763
 
-User.findByIdAndUpdate("5d33bd0af71a6116ec89e68f", { age: 1 })
-  .then(user => {
-    console.log(user);
-    return User.countDocuments({ age: 1 });
-  })
+// User.findByIdAndUpdate("5d33bd0af71a6116ec89e68f", { age: 1 })
+//   .then(user => {
+//     console.log(user);
+//     return User.countDocuments({ age: 1 });
+//   })
+//   .then(count => {
+//     console.log(count);
+//   })
+//   .catch(e => {
+//     console.log(e);
+//   });
+
+const updateAgeAndCount = async (id, age) => {
+  const user = await User.findByIdAndUpdate(id, { age });
+  const count = await User.countDocuments({ age });
+  return count;
+};
+
+updateAgeAndCount("5d33bd0af71a6116ec89e68f", 2)
   .then(count => {
     console.log(count);
   })
